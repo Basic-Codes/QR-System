@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR generator</title>
+</head>
+<style>
+    .container{
+        width: 100vw;
+        height: 90vh;
+
+        position: relative;
+    }
+    .container img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+</style>
+<body>
+
+    <div class="container">
+        <img id="qr"></img>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+    <script>
+        data = {
+              name: "Monkey D. Luffy",
+              age: 19,
+              DF: "Gomu Gomu no mi",
+            }
+        info = JSON.stringify(data)
+        
+        info = `Name: ${data.name}\n Age: ${data.age} \n Devil Fruit: ${data.DF}`
+        MakeQR(info)
+
+        function MakeQR(content) {
+            var qr = new QRious({
+                element: document.getElementById('qr'),
+            });
+
+            // var qr = new QRious();
+            qr.background = 'black';
+            qr.backgroundAlpha = 1;
+            qr.foreground = 'white';
+            qr.foregroundAlpha = 1;
+            qr.mime = "image/png";
+            qr.level = 'H';
+            qr.padding = 10;
+            qr.size = 250;
+            qr.value = content;
+        };
+
+    </script>
+</body>
+</html>
